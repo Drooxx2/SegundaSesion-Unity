@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
             card.name = "Card" + i;
             cardList.Add(card);
 
-            Debug.Log(posX + " " +posY);
-
             posX += 3;
             
             if(i == 4)
