@@ -8,6 +8,7 @@ public class CardScript : MonoBehaviour
     public Sprite front;
     private bool esFrontal;
     private SpriteRenderer _spriteRenderer;
+    
 
     // Start is called before the first frame update
     void Start()
