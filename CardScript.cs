@@ -6,13 +6,18 @@ public class CardScript : MonoBehaviour
 {
     public Sprite back;
     public Sprite front;
+    public int numCard;
     private bool esFrontal;
     private SpriteRenderer _spriteRenderer;
+    private GameManager _gameManager;
+    private GameObject gameManager;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameController");
+        _gameManager = gameManager.GetComponent<GameManager>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
@@ -24,8 +29,10 @@ public class CardScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Has clicado la carta " + gameObject.name);
+        _gameManager.clickOnCard(numCard);
         _spriteRenderer.sprite = (esFrontal) ? back : front;
         esFrontal = !esFrontal;
     }
+
+    
 }

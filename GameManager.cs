@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject prefabCard;
     public List<GameObject> cardList = new List<GameObject>();
     public List<Sprite> spriteList = new List<Sprite>();
+    public List<int> numCardList = new List<int> {7, 1, 0, 9, 6, 7, 1, 0, 9, 6 };
     private CardScript _cardScript;
     private int randomIndex;
 
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
             //Instancia
             card = Instantiate(prefabCard, new Vector3(posX, posY, 0), Quaternion.identity);
 
-            addFront(card);
+            addCardInfo(card);
 
             card.name = "Card" + i;
             cardList.Add(card);
@@ -47,11 +48,20 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void addFront(GameObject card)
+    private void addCardInfo(GameObject card)
     {
         _cardScript = card.GetComponent<CardScript>();
         randomIndex = Random.Range(0, spriteList.Count);
+
         _cardScript.front = spriteList[randomIndex];
+        _cardScript.numCard = numCardList[randomIndex];
+
+        numCardList.RemoveAt(randomIndex);
         spriteList.RemoveAt(randomIndex);
+    }
+
+    public void clickOnCard(int num)
+    {
+        Debug.Log("Has clicado la carta: " + num);
     }
 }
